@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore sample portfolio projects with dynamic filtering and search.">
+  <meta name="theme-color" content="#102c34">
+  <title>Projects — Resume Website</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script type="module" src="../assets/js/projects.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="template-strip"><strong>Portfolio template</strong> Sample content only — customize before publishing.</div>
+<header class="site-header">
+  <div class="container nav-inner">
+    <a class="brand" href="../index.html" aria-label="Portfolio template home"><span class="brand-mark" aria-hidden="true">✳</span> yourfolio<span class="sr-only"></span></a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
+    <nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../projects/index.html" aria-current="page">Projects</a>
+      <a href="../resume/index.html">Resume</a>
+      <a class="nav-contact" href="../index.html#contact">Get in touch ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <div class="container"><header class="page-intro"><div class="eyebrow">The collection</div><h1>Projects<span style="color:#dc684b">.</span></h1>
+    <p>Browse the complete collection of sample case studies. Filter by category, or search for a particular technology or idea.</p>
+  </header>
+  <section class="project-listing" aria-label="Projects">
+    <div class="controls"><div class="filter-list" id="category-filters" aria-label="Filter by category"></div>
+      <label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Search projects</span><input type="search" id="project-search" autocomplete="off" placeholder="Search projects…"></label>
+    </div>
+    <div class="results-line" id="project-count" role="status">Loading projects…</div>
+    <div class="project-grid" id="projects-grid"><p class="loading-hint">Loading the project collection…</p></div>
+  </section></div>
+</main>
+<footer class="site-footer">
+  <div class="container footer-row">
+    <p>© <span data-year>2026</span> yourfolio. A customizable project template.</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">Resume</a><a href="../guide.html">Setup guide</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

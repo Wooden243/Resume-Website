@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Customize a JSON-powered static portfolio template.">
+  <meta name="theme-color" content="#102c34">
+  <title>Customize — Resume Website</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="module" src="assets/js/site-init.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="template-strip"><strong>Portfolio template</strong> Sample content only — customize before publishing.</div>
+<header class="site-header">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html" aria-label="Portfolio template home"><span class="brand-mark" aria-hidden="true">✳</span> yourfolio<span class="sr-only"></span></a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
+    <nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="projects/index.html">Projects</a>
+      <a href="resume/index.html">Resume</a>
+      <a class="nav-contact" href="index.html#contact">Get in touch ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="main"><div class="container">
+<header class="page-intro"><div class="eyebrow">Documentation</div><h1>Make it yours<span style="color:#dc684b">.</span></h1><p>The site is a demonstration template. Replace placeholders, verify every claim, and deploy only after reviewing your public data.</p></header>
+<div class="guide-grid"><nav class="guide-aside" aria-label="Guide sections"><h2>On this page</h2><a href="#start">Run locally</a><a href="#profile">Edit your profile</a><a href="#projects">Add projects</a><a href="#pdf">Replace PDF</a><a href="#publish">Publish</a></nav>
+<div class="guide-main">
+<section id="start"><h2>01 / Run locally</h2><p>Since the browser loads JSON with <code>fetch()</code>, open the site through an HTTP server rather than double-clicking the HTML file.</p><pre><code>python3 -m http.server 8000 --bind 127.0.0.1</code></pre><p>Then open <code>http://127.0.0.1:8000/</code> in your browser.</p></section>
+<section id="profile"><h2>02 / Edit profile data</h2><p>Open <code>data/profile.json</code> and replace the name, introduction, skills, experience, and education. Changes appear on the home and resume pages after reloading.</p><p>Delete any sample entries you cannot verify. The example identity and project descriptions are fictional.</p></section>
+<section id="projects"><h2>03 / Add a project</h2><p>Edit <code>data/projects.json</code>. Add a new object with a unique <code>id</code> and <code>slug</code>, title, summary, content, stack, and metadata. The listing and project-detail page are generated automatically.</p><p>Use a slug like <code>my-first-project</code>. Set <code>featured</code> to <code>true</code> to display a project on the homepage. Optional source and demo links must be HTTPS URLs.</p></section>
+<section id="pdf"><h2>04 / Replace the sample PDF</h2><p>Replace <code>assets/sample-resume.pdf</code> with a verified resume, or update the relative PDF path in <code>data/profile.json</code>. The sample PDF deliberately contains placeholders.</p></section>
+<section id="publish"><h2>05 / Publish with HTTPS</h2><p>This folder is deploy-ready but is not itself a hosted website. Follow <code>docs/deployment.md</code> for GitHub Pages, a custom domain, DNS, HTTPS, and deployment checks.</p><p>GitHub Pages can provide HTTPS for its own domain. A custom domain requires a domain you control and DNS configuration.</p><p>Before publishing, search the project for <code>Your Name</code>, <code>example.com</code>, <code>20XX</code>, and <code>demo</code>, and replace every relevant placeholder.</p></section>
+</div></div></div></main>
+<footer class="site-footer">
+  <div class="container footer-row">
+    <p>© <span data-year>2026</span> yourfolio. A customizable project template.</p>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="index.html">Home</a><a href="projects/index.html">Projects</a><a href="resume/index.html">Resume</a><a href="guide.html">Setup guide</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

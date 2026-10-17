@@ -1,0 +1,23 @@
+{
+  "displayName": "Your Name",
+  "headline": "Building useful things for the web.",
+  "role": "Web Developer · Portfolio template",
+  "location": "Your location",
+  "availability": "Demo portfolio — replace with your information",
+  "introduction": "A lightweight, thoughtful portfolio template for showing projects, documenting decisions, and sharing a resume. Everything on this site is sample content ready to personalize.",
+  "about": "I enjoy turning complicated problems into clear, approachable experiences. This template is built with semantic HTML, modern CSS, and dependency-free JavaScript. Replace this paragraph with an authentic introduction before publishing.",
+  "email": "hello@example.com",
+  "github": "",
+  "linkedin": "",
+  "skills": [
+    {"group":"Front-end", "items":["HTML & accessibility", "CSS", "JavaScript", "Responsive layouts"]},
+    {"group":"Back-end & data", "items":["HTTP & APIs", "Node.js", "Python", "JSON"]},
+    {"group":"Workflow", "items":["Git", "Testing", "Documentation", "Deployment basics"]}
+  ],
+  "experience": [
+    {"period":"20XX – Present", "position":"Your position / project role", "organization":"Your organization", "description":"Describe verified responsibilities and a concrete result. This is a placeholder, not a claim of employment."},
+    {"period":"20XX – 20XX", "position":"Previous role or academic project", "organization":"Your team / organization", "description":"List what you actually built, the tools you used, and how you evaluated the outcome."}
+  ],
+  "education": "Your institution · Your program · Years",
+  "resumeFile": "../assets/sample-resume.pdf"
+}
