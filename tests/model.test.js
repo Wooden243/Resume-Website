@@ -32,7 +32,7 @@ test('filters by category', () => {
   assert.equal(projectMatches(data[0], '', 'Web Application'), false);
 });
 test('search is case-insensitive and checks technology', () => {
-  assert.equal(projectMatches(data[0], 'BANDIT'), true);
+  assert.equal(projectMatches(data[0], 'NUMPY'), true);
   assert.equal(projectMatches(data[0], 'python'), true);
   assert.equal(projectMatches(data[0], 'unmatched'), false);
 });
