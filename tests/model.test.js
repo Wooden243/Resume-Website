@@ -49,12 +49,24 @@ test('categories begin with All and contain unique names', () => {
   assert.equal(new Set(cats).size, cats.length);
 });
 test('valid date formats safely', () => {
-  assert.equal(formatProjectDate('2026-04-10'), 'April 2026');
-  assert.equal(formatProjectDate('bogus'), 'Date not set');
+  assert.equal(formatProjectDate('2026-04-10'), '2026年4月');
+  assert.equal(formatProjectDate('bogus'), '日付未設定');
+  assert.equal(formatProjectDate('2026-02-30'), '日付未設定');
 });
 
 test('featured projects link to verified GitHub source repositories', () => {
   assert.deepEqual(new Set(data.map(p => p.slug)), new Set(['ml-algorithms', 'chatbot']));
   assert.ok(data.every(p => p.featured && p.source.startsWith('https://github.com/Wooden243/')));
   assert.ok(data.every(p => !p.demo));
+});
+
+test('case studies publish structured metrics, workflows, and verifiable links', () => {
+  for (const project of data) {
+    assert.equal(project.highlights.length, 3);
+    assert.ok(project.workflow.length >= 3);
+    assert.ok(project.resources.length >= 3);
+    assert.ok(project.resources.every(item => item.url.startsWith('https://github.com/Wooden243/')));
+    assert.ok(project.highlights.every(item => item.value && item.label));
+    assert.ok(project.workflow.every(item => item.title && item.detail));
+  }
 });
