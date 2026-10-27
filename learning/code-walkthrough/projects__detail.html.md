@@ -5,7 +5,7 @@
 > **出力:** 詳細ページの受け皿。
 > **設計意図:** 1枚のHTMLで複数プロジェクトを表示。
 
-> **SHA-256:** `3981545bf70805903d282b7279b78c3599d20f90b9221f5db33e20e1783db656`（現行ソースとの整合性確認用）
+> **SHA-256:** `4c18e8a83d645b18a4bda7d6f97b0c1014bbc7ab650609fc4a69f396c5faaff0`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -14,6 +14,12 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="課題、実装方法、結果と制約を紹介するプロジェクト詳細。">
+<link rel="canonical" href="https://wooden243.github.io/mysite/projects/detail.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Project details — Wooden243">
+<meta property="og:description" content="技術課題、実装構成、実験・テストの検証結果とGitHubソースを紹介。">
+<meta property="og:url" content="https://wooden243.github.io/mysite/projects/detail.html">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#102c34">
 <title>Project details — Wooden243</title>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -31,11 +37,11 @@
 <a class="nav-contact" href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 </nav></div></header>
 <main id="main"><div class="container">
-<nav class="breadcrumb" aria-label="現在位置"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Projects</a><span aria-hidden="true">/</span><span>Detail</span></nav>
+<nav class="breadcrumb" aria-label="現在位置"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Projects</a><span aria-hidden="true">/</span><span id="project-breadcrumb">Detail</span></nav>
 <article id="project-detail" class="detail-wrapper" aria-live="polite"><p class="loading-hint">詳細を読み込み中…</p></article>
 </div></main><footer class="site-footer"><div class="container footer-row">
 <p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
-<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="../guide.html">Guide</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
 </div></footer>
 </body></html>
 ```
