@@ -5,7 +5,7 @@
 > **出力:** HTTPステータス / 本文 / Content-Type。
 > **設計意図:** 実際のHTTP配信を検証。
 
-> **SHA-256:** `32fe919f79c6f3ebbfd156c7c5c03c937802ded60cc747ebcd5d0abbb3cd3261`（現行ソースとの整合性確認用）
+> **SHA-256:** `fa9e2a78f6af4d19897179412bdb655f83fdb3f9c1fb606cdb91ce51d8103763`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -70,11 +70,10 @@ class StaticSiteHTTPTests(unittest.TestCase):
         _,_,body = self.get('/data/profile.json')
         self.assertIn('displayName',json.loads(body))
 
-    def test_resume_pdf_over_http(self):
-        status,headers,data = self.get('/assets/sample-resume.pdf')
-        self.assertEqual(status,200)
-        self.assertEqual(data[:5],b'%PDF-')
-        self.assertIn('application/pdf',headers['Content-Type'])
+    def test_public_metadata_and_404_page(self):
+        for path in ['/sitemap.xml','/robots.txt','/404.html']:
+            with self.subTest(path=path):
+                self.assertEqual(self.get(path)[0],200)
 
     def test_asset_modules_and_css(self):
         for path in ['/assets/css/styles.css','/assets/js/main.js',
