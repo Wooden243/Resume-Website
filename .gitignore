@@ -11,3 +11,8 @@ coverage/
 .idea/
 __pycache__/
 *.pyc
+
+# Windows attachment/download metadata
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
