@@ -1,29 +1,17 @@
-# code-walkthrough: 主要ファイルの逐次解説
+# ソースコードの写本と学習用解説
 
-各Markdownの第1章は**対応ファイルの全文**、第2章は実際の行番号に紐づく**上から順番の解説**、第3章は設計ポイントの補足、第4章は実行例、第5章は確認ポイント。
+このディレクトリには、当初の学習用テンプレートから引き継いだ主要なHTML・CSS・JavaScript・JSON・テスト・デプロイ設定の**ソース全文**と解説を収録しています。
 
-初学者は`data.js.md` → `model.js.md` → `dom.js.md` → `projects.js.md` → `detail.js.md` → `resume.js.md` → `main.js.md` → `site.js.md` → `styles.css.md`を推奨。
+各ファイルの第1章に収録した実装ソース全文およびSHA-256は、`tests/test_materials.py`で現行ソースと突き合わせています。一方、第2章以降の一部の解説や図示例には、初期テンプレート時代の作品名・操作例・サンプルPDFなどの記述が残ることがあります。これらは**現行の公開ポートフォリオの説明ではありません**。
 
-- [`assets/js/data.js`](data.js.md)
-- [`assets/js/model.js`](model.js.md)
-- [`assets/js/dom.js`](dom.js.md)
-- [`assets/js/site.js`](site.js.md)
-- [`assets/js/site-init.js`](site-init.js.md)
-- [`assets/js/main.js`](main.js.md)
-- [`assets/js/projects.js`](projects.js.md)
-- [`assets/js/detail.js`](detail.js.md)
-- [`assets/js/resume.js`](resume.js.md)
-- [`index.html`](index.html.md)
-- [`projects/index.html`](projects__index.html.md)
-- [`projects/detail.html`](projects__detail.html.md)
-- [`resume/index.html`](resume__index.html.md)
-- [`guide.html`](guide.html.md)
-- [`assets/css/styles.css`](styles.css.md)
-- [`data/projects.json`](data__projects.json.md)
-- [`data/profile.json`](data__profile.json.md)
-- [`tests/model.test.js`](tests__model.test.js.md)
-- [`tests/structure.test.js`](tests__structure.test.js.md)
-- [`tests/test_http.py`](tests__test_http.py.md)
-- [`.github/workflows/deploy.yml`](deploy.yml.md)
-- [`scripts/serve.sh`](scripts__serve.sh.md)
-- [`scripts/verify.sh`](scripts__verify.sh.md)
+現在の構成・機能・プロジェクトの正本は、[トップREADME](../../README.md)、[作品JSON](../../data/projects.json)、[編集ガイド](../../docs/customization.md)、実装ソースを優先してください。
+
+## 読む順序
+
+1. `data.js.md` → `model.js.md`: JSONの読み込みとデータ検証・検索
+2. `dom.js.md` → `projects.js.md` → `detail.js.md`: DOM生成と作品一覧・詳細表示
+3. `main.js.md` → `resume.js.md` → `site.js.md`: ホーム、About、共通操作
+4. `styles.css.md`、各HTMLの写本: レスポンシブ表示とページ構成
+5. `tests__model.test.js.md`など: 自動検証
+
+ソースと学習用写本の更新方法は[ソース整合性ガイド](../07_SOURCE_MANIFEST.md)を参照してください。
