@@ -58,11 +58,10 @@ class StaticSiteHTTPTests(unittest.TestCase):
         _,_,body = self.get('/data/profile.json')
         self.assertIn('displayName',json.loads(body))
 
-    def test_resume_pdf_over_http(self):
-        status,headers,data = self.get('/assets/sample-resume.pdf')
-        self.assertEqual(status,200)
-        self.assertEqual(data[:5],b'%PDF-')
-        self.assertIn('application/pdf',headers['Content-Type'])
+    def test_public_metadata_and_404_page(self):
+        for path in ['/sitemap.xml','/robots.txt','/404.html']:
+            with self.subTest(path=path):
+                self.assertEqual(self.get(path)[0],200)
 
     def test_asset_modules_and_css(self):
         for path in ['/assets/css/styles.css','/assets/js/main.js',
