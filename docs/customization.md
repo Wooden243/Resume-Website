@@ -1,68 +1,35 @@
-# Customize the Resume Website
+# ポートフォリオの更新方法
 
-This is a public-safe **template**, not an identity or a record of real completed work. Before publishing a personal portfolio, update all sample data.
+このサイトの公開プロジェクトの正本は `data/projects.json` です。現在は `ml-algorithms` と `chatbot` の2件を掲載しています。
 
-## 1. Content sources
+## プロジェクトの追加
 
-| Source file | What it controls |
-| --- | --- |
-| `data/profile.json` | About paragraph, name, skills, experience, education, downloadable resume path |
-| `data/projects.json` | List, featured projects, category filter, search index, project detail pages |
-| `assets/sample-resume.pdf` | Actual PDF download (currently a clearly marked SAMPLE) |
-| `index.html`, `resume/index.html` | Static framing copy, heading, download CTA |
-| `assets/css/styles.css` | Layout, colors, breakpoints, typography, project mockup visuals |
+`data/projects.json` の配列に新しいオブジェクトを追加します。既存の2件を参考に、以下のフィールドを設定してください。
 
-The site uses English sample copy, but UTF-8 Japanese text may be added to JSON values. Render it as text; never inject user-provided HTML via `innerHTML`.
+- `id`：重複しない正の整数
+- `slug`：重複しない小文字英数字とハイフン（詳細ページのURLに使用）
+- `title`、`subtitle`、`summary`、`content`：タイトル・短い説明・詳細
+- `challenge`、`approach`、`outcome`：課題、実装・実験の方法、観察と制約
+- `stack`、`category`：使用技術とカテゴリー
+- `year`、`date`：記録年・日付（`YYYY-MM-DD`）
+- `featured`：トップページに表示するときは `true`
+- `source`：実在するGitHubリポジトリのHTTPS URL
+- `demo`：公開済みのデモURL。存在しなければ空文字
+- `visual`：`bandit`、`chatbot`、その他は汎用のビジュアル
 
-## 2. Add a project (JSON)
+項目追加後は、カード・カテゴリ・検索・個別ページに反映されます。数値結果や説明は対応するソース・READMEで裏付けられるものだけを記入してください。
 
-```json
-{
-  "id": 6,
-  "slug": "my-real-project",
-  "title": "My Real Project",
-  "subtitle": "One-line value proposition",
-  "summary": "Brief and verifiable summary.",
-  "content": "Overview with actual scope and constraints.",
-  "challenge": "The problem to solve.",
-  "approach": "The design and implementation decisions.",
-  "outcome": "What actually happened; avoid invented achievements.",
-  "stack": ["JavaScript", "HTML"],
-  "category": "Web App",
-  "year": 2026,
-  "date": "2026-10-18",
-  "featured": false,
-  "source": "https://github.com/your-account/your-repo",
-  "demo": "",
-  "visual": "generic"
-}
-```
+## プロフィール
 
-Each `id` and `slug` must be unique. Slugs use lowercase letters, numbers, and hyphens. `source` and `demo` can be empty until real links exist; no placeholder GitHub homepages are displayed as demo links. Use an HTTPS URL for real external destinations.
+`data/profile.json` から紹介文、スキル、選択したプロジェクトの概要を生成します。氏名・メールアドレスなどの個人情報や経歴を公開する場合は、公開範囲を事前に確認してください。現状はGitHubハンドルを使用しています。
 
-## 3. JSON/AJAX loading flow
-
-```text
-page loads → browser requests assets/js/projects.js
-          → projects.js imports data.js
-          → fetch(../../data/projects.json)
-          → JSON parsed and validated by model.js
-          → DOM created safely by dom.js
-          → project cards or case-study page rendered
-```
-
-The same detail template `projects/detail.html?slug=my-real-project` automatically displays newly inserted JSON records. No manual duplication of HTML pages is required.
-
-## 4. Local preview
-
-From project root:
+## ローカル確認
 
 ```bash
 python3 -m http.server 8000 --bind 127.0.0.1
+bash scripts/verify.sh
 ```
 
-Then visit `http://127.0.0.1:8000/`. **Do not** open HTML directly with the `file://` scheme; browser security restrictions commonly block `fetch()` there.
+ブラウザーでは、`index.html`、`projects/index.html`、`projects/detail.html?slug=ml-algorithms`、`projects/detail.html?slug=chatbot` を確認します。
 
-## 5. Publish safely
-
-Search for `Your Name`, `example.com`, `20XX`, and `sample` across HTML, JSON, PDF and README. Remove fictional content, replace the sample resume PDF, check external links, and run automated tests. For deployment/domain steps, read `docs/deployment.md`.
+ソースコードを変更した場合は、`learning/code-walkthrough/` の対応するコード全文・SHA-256も同期します。GitHub Pagesへの反映については [deployment.md](deployment.md) を参照してください。

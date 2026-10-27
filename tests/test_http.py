@@ -41,7 +41,7 @@ class StaticSiteHTTPTests(unittest.TestCase):
         self.assertIn(b'<main id="main">',data)
 
     def test_pages_and_guide_are_accessible(self):
-        for path in ['/projects/index.html','/projects/detail.html?slug=foodie-finder',
+        for path in ['/projects/index.html','/projects/detail.html?slug=ml-algorithms',
                      '/resume/index.html','/guide.html']:
             with self.subTest(path=path):
                 self.assertEqual(self.get(path)[0],200)
@@ -51,8 +51,8 @@ class StaticSiteHTTPTests(unittest.TestCase):
         self.assertEqual(status,200)
         self.assertIn('application/json',headers['Content-Type'])
         data=json.loads(body)
-        self.assertGreaterEqual(len(data),5)
-        self.assertTrue(any(p['slug']=='foodie-finder' for p in data))
+        self.assertEqual(len(data),2)
+        self.assertTrue(any(p['slug']=='ml-algorithms' for p in data))
 
     def test_profile_json(self):
         _,_,body = self.get('/data/profile.json')

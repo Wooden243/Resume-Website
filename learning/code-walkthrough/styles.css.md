@@ -5,7 +5,7 @@
 > **出力:** 色・レイアウト・モバイル表示。
 > **設計意図:** media queryとCSS変数で統一。
 
-> **SHA-256:** `e17fe7955a665c3bb9c44a5733096f5079bf459a0509d28a71d5a7bd7479a843`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `c0f9281f80b45850c8fdd10e667d3a40511ea37c9acf8def74ef29a1c0184404`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -287,6 +287,18 @@ p { color: var(--ink-soft); }
 .guide-main pre {background:var(--deep);color:#e5f8ed;padding:20px;border-radius:12px;overflow-x:auto;font-size:12px;line-height:1.7;}
 .guide-main pre code {background:transparent;padding:0;}
 @media(max-width:720px){.guide-grid{grid-template-columns:1fr;gap:20px}.guide-aside{position:static;}}
+
+/* Visual language for verified ML and software engineering projects. */
+.art-bandit { background: linear-gradient(135deg, #d9ebd8, #b7d6d4); }
+.art-chatbot { background: linear-gradient(135deg, #dce4f4, #c9d6e7); }
+.art-bandit .art-window { transform: rotate(-3deg); }
+.art-chatbot .art-window { transform: rotate(3deg); }
+.art-bandit .art-code { font-size: 13px; font-weight: 800; color: #275f55; }
+.art-chatbot .art-list span { background: #e9edf8; color: #4a6285; }
+.project-grid, .project-listing .project-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+.art-generic .art-main-number { font-size: 20px; line-height: 1.25; overflow-wrap: anywhere; }
 ```
 
 ## 2. 上から順番の行・ブロック解説

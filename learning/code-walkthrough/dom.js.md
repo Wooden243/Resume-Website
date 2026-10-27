@@ -5,7 +5,7 @@
 > **出力:** DOMノード。
 > **設計意図:** 文字の安全性（textContent）を一元管理。
 
-> **SHA-256:** `d4c69cac1c2857facad138f7c417dfbc04d56325014da6b45c32266690b06940`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `e88709ead7bdd7f81d198bdeca243c37aab349f627ca1f0e7fdbf5546cbc84f0`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -33,33 +33,27 @@ export function renderTags(tags, limit = 4) {
 }
 
 export function visualForProject(project) {
-  const theme = /^([a-z-]+)$/.test(project.visual ?? '') ? project.visual : 'generic';
+  const theme = ['bandit', 'chatbot'].includes(project.visual) ? project.visual : 'generic';
   const wrapper = node('div', {className: `project-art art-${theme}`, attrs: {'aria-hidden': 'true'}});
   const window = node('div', {className: 'art-window'});
   const top = node('div', {className: 'art-top'}, [node('span'), node('span'), node('span')]);
   const content = node('div', {className: 'art-body'});
-  if (theme === 'budget') {
-    content.append(node('div', {className: 'art-kicker', text: 'MONTHLY OVERVIEW'}));
-    content.append(node('div', {className: 'art-main-number', text: '¥ 24,820'}));
-    content.append(node('div', {className: 'art-bars'}, [1,2,3,4,5,6,7].map(i => node('i', {attrs: {style: `--bar:${[48,75,62,94,56,84,67][i-1]}%`}}))));
-  } else if (theme === 'fitness') {
-    content.append(node('div', {className: 'art-kicker', text: 'TODAY’S ACTIVITY'}));
-    content.append(node('div', {className: 'art-main-number', text: '08:42'}));
-    content.append(node('div', {className: 'art-progress'}, [node('span')]));
-    content.append(node('div', {className: 'art-foot', text: 'A little progress, every day.'}));
-  } else if (theme === 'travel') {
-    content.append(node('div', {className: 'art-kicker', text: 'YOUR ITINERARY'}));
-    content.append(node('div', {className: 'art-main-number', text: '03 stops'}));
-    content.append(node('div', {className: 'art-list'}, ['Museum', 'Coffee stop', 'Riverside walk'].map(x => node('span', {text:x}))));
-  } else if (theme === 'collab') {
-    content.append(node('div', {className: 'art-kicker', text: 'REVIEW IN PROGRESS'}));
-    content.append(node('div', {className: 'art-code', text: '+ const clearer = true;'}));
-    content.append(node('div', {className: 'art-code muted', text: '- const clutter = false;'}));
-    content.append(node('div', {className: 'art-foot', text: '3 files · 5 comments'}));
+  if (theme === 'bandit') {
+    content.append(node('div', {className: 'art-kicker', text: 'MULTI-ARMED BANDIT / RL'}));
+    content.append(node('div', {className: 'art-main-number', text: 'ε-greedy'}));
+    content.append(node('div', {className: 'art-code', text: 'Q ← Q + α(R − Q)'}));
+    content.append(node('div', {className: 'art-foot', text: '10 arms · 9 settings · 5,000 runs each'}));
+  } else if (theme === 'chatbot') {
+    content.append(node('div', {className: 'art-kicker', text: 'FULL-STACK CHATBOT'}));
+    content.append(node('div', {className: 'art-main-number', text: 'ChatBot'}));
+    content.append(node('div', {className: 'art-list'}, [
+      node('span', {text: 'React → REST API'}),
+      node('span', {text: 'FastAPI → OpenAI API'}),
+      node('span', {text: 'SQLAlchemy → SQLite'})
+    ]));
   } else {
-    content.append(node('div', {className: 'art-kicker', text: 'DISCOVER NEAR YOU'}));
-    content.append(node('div', {className: 'art-search', text: '⌕   Search local favorites'}));
-    content.append(node('div', {className: 'art-list'}, ['Coffee & brunch', 'Small restaurants', 'Hidden gems'].map(x => node('span', {text:x}))));
+    content.append(node('div', {className: 'art-kicker', text: 'SOFTWARE PROJECT'}));
+    content.append(node('div', {className: 'art-main-number', text: project.title}));
   }
   window.append(top, content);
   wrapper.append(window);

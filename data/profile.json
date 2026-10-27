@@ -1,23 +1,60 @@
 {
-  "displayName": "Your Name",
-  "headline": "Building useful things for the web.",
-  "role": "Web Developer · Portfolio template",
-  "location": "Your location",
-  "availability": "Demo portfolio — replace with your information",
-  "introduction": "A lightweight, thoughtful portfolio template for showing projects, documenting decisions, and sharing a resume. Everything on this site is sample content ready to personalize.",
-  "about": "I enjoy turning complicated problems into clear, approachable experiences. This template is built with semantic HTML, modern CSS, and dependency-free JavaScript. Replace this paragraph with an authentic introduction before publishing.",
-  "email": "hello@example.com",
-  "github": "",
+  "displayName": "Wooden243",
+  "headline": "機械学習の実装とソフトウェア開発",
+  "role": "Machine Learning · Software Engineering",
+  "location": "",
+  "availability": "公開コード・数値実験・技術資料",
+  "introduction": "機械学習アルゴリズムの実装・数値実験と、Webアプリケーションの設計・開発に取り組んでいます。コード、評価方法、実装上の制約を成果物とともに記録しています。",
+  "about": "公開している主な成果物は、ε-greedyによる多腕バンディットの計算実験と、Next.js・FastAPI・SQLite・OpenAI APIを接続したチャットアプリです。実装した内容と未検証の範囲を区別し、再現性と保守性を重視しています。",
+  "email": "",
+  "github": "https://github.com/Wooden243",
   "linkedin": "",
   "skills": [
-    {"group":"Front-end", "items":["HTML & accessibility", "CSS", "JavaScript", "Responsive layouts"]},
-    {"group":"Back-end & data", "items":["HTTP & APIs", "Node.js", "Python", "JSON"]},
-    {"group":"Workflow", "items":["Git", "Testing", "Documentation", "Deployment basics"]}
+    {
+      "group": "機械学習・数値計算",
+      "items": [
+        "Python",
+        "NumPy",
+        "ε-greedy",
+        "Monte Carlo simulation"
+      ]
+    },
+    {
+      "group": "バックエンド・データ",
+      "items": [
+        "FastAPI",
+        "SQLAlchemy",
+        "SQLite",
+        "REST API",
+        "Pydantic"
+      ]
+    },
+    {
+      "group": "フロントエンド・検証",
+      "items": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "pytest",
+        "Playwright",
+        "Git"
+      ]
+    }
   ],
   "experience": [
-    {"period":"20XX – Present", "position":"Your position / project role", "organization":"Your organization", "description":"Describe verified responsibilities and a concrete result. This is a placeholder, not a claim of employment."},
-    {"period":"20XX – 20XX", "position":"Previous role or academic project", "organization":"Your team / organization", "description":"List what you actually built, the tools you used, and how you evaluated the outcome."}
+    {
+      "period": "2026",
+      "position": "Multi-Armed Bandit Simulation",
+      "organization": "機械学習アルゴリズム実装",
+      "description": "ε-greedyを実装し、学習率・探索率の9条件について各5,000試行を集計。コードと数式・実験結果を公開。"
+    },
+    {
+      "period": "2026",
+      "position": "ChatBot Web Application",
+      "organization": "フルスタックWebアプリ開発",
+      "description": "会話管理・SQLiteによる永続化・OpenAI API連携・例外処理・APIとブラウザーの自動テストを実装。"
+    }
   ],
-  "education": "Your institution · Your program · Years",
-  "resumeFile": "../assets/sample-resume.pdf"
+  "education": "",
+  "resumeFile": ""
 }

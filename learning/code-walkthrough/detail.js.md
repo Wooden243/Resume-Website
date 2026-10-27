@@ -5,7 +5,7 @@
 > **出力:** プロジェクト詳細DOM。
 > **設計意図:** slug未発見・外部リンク不正のフォールバック。
 
-> **SHA-256:** `6685426b1d236be56e18b45caf852cc02cac8af62b77a00fca470583ae3ff3c0`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `ff059a3012b0399eef3f2c21fc466be1e99e8dea3095e125839bfe0855d3cf81`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -19,7 +19,7 @@ initSite();
 const content = document.getElementById('project-detail');
 
 function section(label, text) {
-  return node('section', {className:'case-section'}, [node('h2', {text:label}), node('p', {text:text || 'Details to be added.'})]);
+  return node('section', {className:'case-section'}, [node('h2', {text:label}), node('p', {text:text || '詳細情報は準備中です。'})]);
 }
 
 function appendLinkIfValid(target, label, url) {
@@ -37,15 +37,15 @@ async function renderDetail() {
     const project = getProjectBySlug(normalizeProjects(await loadProjects()), slug);
     if (!project) {
       content.replaceChildren(node('div', {className:'status-panel'}, [
-        node('h1', {text:'Project not found'}),
-        node('p', {text:'The requested project is not in the portfolio data.'}),
-        node('a', {className:'text-link', text:'← Browse projects', attrs:{href:'index.html'}})
+        node('h1', {text:'プロジェクトが見つかりません'}),
+        node('p', {text:'指定されたプロジェクトは登録されていません。'}),
+        node('a', {className:'text-link', text:'← プロジェクト一覧', attrs:{href:'index.html'}})
       ]));
-      document.title = 'Project not found — Resume Website';
+      document.title = 'プロジェクトが見つかりません — Wooden243';
       return;
     }
 
-    document.title = `${project.title} — Resume Website`;
+    document.title = `${project.title} — Wooden243`;
     const header = node('div', {className:'case-header'});
     header.append(node('div', {className:'eyebrow', text:`${project.category} / ${formatProjectDate(project.date)}`}));
     header.append(node('h1', {text:project.title}));
@@ -53,25 +53,24 @@ async function renderDetail() {
     header.append(renderTags(project.stack, 8));
 
     const links = node('div', {className:'case-links'});
-    appendLinkIfValid(links, 'Source code ↗', project.source);
-    appendLinkIfValid(links, 'Live demo ↗', project.demo);
+    appendLinkIfValid(links, 'GitHubでソースを見る ↗', project.source);
+    appendLinkIfValid(links, 'デモ ↗', project.demo);
     if (links.childElementCount) header.append(links);
 
     content.replaceChildren(
       header,
       visualForProject(project),
       node('div', {className:'case-content'}, [
-        section('Overview', project.content),
-        section('The challenge', project.challenge),
-        section('The approach', project.approach),
-        section('The outcome', project.outcome),
-        node('p', {className:'demo-note', text:'This is demonstration content. Replace all sample projects with verified work before publishing a personal portfolio.'}),
-        node('a', {className:'button button-primary', text:'← All projects', attrs:{href:'index.html'}})
+        section('概要', project.content),
+        section('課題', project.challenge),
+        section('実装・検証方法', project.approach),
+        section('結果と制約', project.outcome),
+        node('a', {className:'button button-primary', text:'← プロジェクト一覧', attrs:{href:'index.html'}})
       ])
     );
   } catch (error) {
     console.error(error);
-    showError(content, 'Project information could not be loaded.', renderDetail);
+    showError(content, 'プロジェクト情報を読み込めませんでした。', renderDetail);
   }
 }
 

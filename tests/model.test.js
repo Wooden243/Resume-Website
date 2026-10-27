@@ -8,7 +8,7 @@ const path = fileURLToPath(new URL('../data/projects.json', import.meta.url));
 const data = JSON.parse(readFileSync(path, 'utf8'));
 
 test('JSON is an array of valid projects', () => {
-  assert.ok(data.length >= 5);
+  assert.equal(data.length, 2);
   for (const project of data) assert.equal(isValidProject(project), true);
 });
 test('each slug and ID is unique', () => {
@@ -28,12 +28,12 @@ test('normalizeProjects rejects malformed project', () => {
   assert.throws(()=>normalizeProjects([{title:'no id'}]), /Invalid/);
 });
 test('filters by category', () => {
-  assert.equal(projectMatches(data[0], '', 'Web App'), true);
-  assert.equal(projectMatches(data[0], '', 'Data UI'), false);
+  assert.equal(projectMatches(data[0], '', 'Machine Learning'), true);
+  assert.equal(projectMatches(data[0], '', 'Web Application'), false);
 });
 test('search is case-insensitive and checks technology', () => {
-  assert.equal(projectMatches(data[0], 'FOODIE'), true);
-  assert.equal(projectMatches(data[0], 'javascript'), true);
+  assert.equal(projectMatches(data[0], 'NUMPY'), true);
+  assert.equal(projectMatches(data[0], 'python'), true);
   assert.equal(projectMatches(data[0], 'unmatched'), false);
 });
 test('empty search matches all projects', () => {
@@ -51,4 +51,10 @@ test('categories begin with All and contain unique names', () => {
 test('valid date formats safely', () => {
   assert.equal(formatProjectDate('2026-04-10'), 'April 2026');
   assert.equal(formatProjectDate('bogus'), 'Date not set');
+});
+
+test('featured projects link to verified GitHub source repositories', () => {
+  assert.deepEqual(new Set(data.map(p => p.slug)), new Set(['ml-algorithms', 'chatbot']));
+  assert.ok(data.every(p => p.featured && p.source.startsWith('https://github.com/Wooden243/')));
+  assert.ok(data.every(p => !p.demo));
 });

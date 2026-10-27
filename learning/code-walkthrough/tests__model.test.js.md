@@ -5,7 +5,7 @@
 > **出力:** 自動テストの成否。
 > **設計意図:** DOMなしで高速にテストできる。
 
-> **SHA-256:** `da40c8d6016f4605dc5b593b1b585ca50cdd8aed919a34e360e45d9be99c5747`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `63f1ae7fea174b37e84a5c29ab36ba0b3f23462c5bc26682e8d131f347564706`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -20,7 +20,7 @@ const path = fileURLToPath(new URL('../data/projects.json', import.meta.url));
 const data = JSON.parse(readFileSync(path, 'utf8'));
 
 test('JSON is an array of valid projects', () => {
-  assert.ok(data.length >= 5);
+  assert.equal(data.length, 2);
   for (const project of data) assert.equal(isValidProject(project), true);
 });
 test('each slug and ID is unique', () => {
@@ -40,12 +40,12 @@ test('normalizeProjects rejects malformed project', () => {
   assert.throws(()=>normalizeProjects([{title:'no id'}]), /Invalid/);
 });
 test('filters by category', () => {
-  assert.equal(projectMatches(data[0], '', 'Web App'), true);
-  assert.equal(projectMatches(data[0], '', 'Data UI'), false);
+  assert.equal(projectMatches(data[0], '', 'Machine Learning'), true);
+  assert.equal(projectMatches(data[0], '', 'Web Application'), false);
 });
 test('search is case-insensitive and checks technology', () => {
-  assert.equal(projectMatches(data[0], 'FOODIE'), true);
-  assert.equal(projectMatches(data[0], 'javascript'), true);
+  assert.equal(projectMatches(data[0], 'NUMPY'), true);
+  assert.equal(projectMatches(data[0], 'python'), true);
   assert.equal(projectMatches(data[0], 'unmatched'), false);
 });
 test('empty search matches all projects', () => {
@@ -63,6 +63,12 @@ test('categories begin with All and contain unique names', () => {
 test('valid date formats safely', () => {
   assert.equal(formatProjectDate('2026-04-10'), 'April 2026');
   assert.equal(formatProjectDate('bogus'), 'Date not set');
+});
+
+test('featured projects link to verified GitHub source repositories', () => {
+  assert.deepEqual(new Set(data.map(p => p.slug)), new Set(['ml-algorithms', 'chatbot']));
+  assert.ok(data.every(p => p.featured && p.source.startsWith('https://github.com/Wooden243/')));
+  assert.ok(data.every(p => !p.demo));
 });
 ```
 
