@@ -5,7 +5,7 @@
 > **出力:** プロジェクト詳細DOM。
 > **設計意図:** slug未発見・外部リンク不正のフォールバック。
 
-> **SHA-256:** `ff059a3012b0399eef3f2c21fc466be1e99e8dea3095e125839bfe0855d3cf81`（現行ソースとの整合性確認用）
+> **SHA-256:** `9da27165e46051936edacbac8c2d817a11367758d907e5ab13f77e2340c55420`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -31,6 +31,60 @@ function appendLinkIfValid(target, label, url) {
   } catch { /* Optional project link intentionally omitted. */ }
 }
 
+
+function renderHighlights(items) {
+  if (!items?.length) return null;
+  return node('section', {className:'case-highlights', attrs:{'aria-label':'主要な仕様・検証項目'}},
+    items.map(item => node('div', {className:'case-metric'}, [
+      node('strong', {text:item.value}),
+      node('span', {text:item.label})
+    ]))
+  );
+}
+
+function renderWorkflow(items) {
+  if (!items?.length) return null;
+  return node('section', {className:'case-section'}, [
+    node('h2', {text:'処理と設計の流れ'}),
+    node('ol', {className:'case-workflow'}, items.map(item =>
+      node('li', {}, [node('h3',{text:item.title}), node('p',{text:item.detail})])
+    ))
+  ]);
+}
+
+function renderResources(items) {
+  if (!items?.length) return null;
+  const links = [];
+  for (const item of items) {
+    try {
+      const url = new URL(item.url);
+      if (url.protocol !== 'https:') continue;
+      links.push(node('li', {}, [
+        node('a', {className:'resource-link', text:item.label + ' ↗',
+          attrs:{href:url.href,target:'_blank',rel:'noopener noreferrer'}})
+      ]));
+    } catch { /* Omit malformed optional link. */ }
+  }
+  return links.length ? node('section', {className:'case-section'}, [
+    node('h2', {text:'実装・検証資料'}),
+    node('ul', {className:'resource-list'}, links)
+  ]) : null;
+}
+
+function updateMeta(project) {
+  const title = project ? `${project.title} — Wooden243` : 'プロジェクトが見つかりません — Wooden243';
+  const description = project?.summary || '技術ポートフォリオの公開プロジェクト詳細。';
+  document.title = title;
+  const descriptionTag = document.querySelector('meta[name="description"]');
+  if (descriptionTag) descriptionTag.content = description;
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.href = window.location.href.split('#')[0];
+  for (const [name,value] of [['og:title',title],['og:description',description],['og:url',window.location.href]]) {
+    const meta = document.querySelector(`meta[property="${name}"]`);
+    if (meta) meta.content = value;
+  }
+}
+
 async function renderDetail() {
   try {
     const slug = new URLSearchParams(window.location.search).get('slug');
@@ -41,11 +95,11 @@ async function renderDetail() {
         node('p', {text:'指定されたプロジェクトは登録されていません。'}),
         node('a', {className:'text-link', text:'← プロジェクト一覧', attrs:{href:'index.html'}})
       ]));
-      document.title = 'プロジェクトが見つかりません — Wooden243';
+      updateMeta(null);
       return;
     }
 
-    document.title = `${project.title} — Wooden243`;
+    updateMeta(project);
     const header = node('div', {className:'case-header'});
     header.append(node('div', {className:'eyebrow', text:`${project.category} / ${formatProjectDate(project.date)}`}));
     header.append(node('h1', {text:project.title}));
@@ -57,17 +111,22 @@ async function renderDetail() {
     appendLinkIfValid(links, 'デモ ↗', project.demo);
     if (links.childElementCount) header.append(links);
 
-    content.replaceChildren(
-      header,
-      visualForProject(project),
-      node('div', {className:'case-content'}, [
-        section('概要', project.content),
-        section('課題', project.challenge),
-        section('実装・検証方法', project.approach),
-        section('結果と制約', project.outcome),
-        node('a', {className:'button button-primary', text:'← プロジェクト一覧', attrs:{href:'index.html'}})
-      ])
-    );
+    const body = node('div', {className:'case-content'});
+    for (const item of [
+      section('概要', project.content),
+      section('課題', project.challenge),
+      renderWorkflow(project.workflow),
+      section('実装・検証方法', project.approach),
+      section('結果と制約', project.outcome),
+      renderResources(project.resources)
+    ]) {
+      if (item) body.append(item);
+    }
+    body.append(node('a', {className:'button button-primary', text:'← プロジェクト一覧', attrs:{href:'index.html'}}));
+    const highlights = renderHighlights(project.highlights);
+    content.replaceChildren(header, visualForProject(project), ...(highlights ? [highlights] : []), body);
+    const breadcrumb = document.getElementById('project-breadcrumb');
+    if (breadcrumb) breadcrumb.textContent = project.title;
   } catch (error) {
     console.error(error);
     showError(content, 'プロジェクト情報を読み込めませんでした。', renderDetail);

@@ -5,7 +5,7 @@
 > **出力:** Pagesへファイル公開するジョブ。
 > **設計意図:** Actions有効化は利用者側で必要。
 
-> **SHA-256:** `c92dad6fe44679e743d353879e921f872683702c4f7dfa2464de66f4c950ede7`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `7aa3a66473dcb13e2cecbe42e7a5571491cc3a7b5acaca3f29a6e96af63b491c`（ZIPに入れた元ファイルとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -32,10 +32,18 @@ jobs:
       - uses: actions/checkout@v4
       - name: Set up Pages
         uses: actions/configure-pages@v5
+      - name: Assemble public site only
+        run: |
+          mkdir -p _site/assets
+          cp -R assets/css assets/js _site/assets/
+          cp assets/favicon.svg _site/assets/
+          cp -R data projects resume _site/
+          cp index.html guide.html 404.html robots.txt sitemap.xml _site/
+          touch _site/.nojekyll
       - name: Upload static site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

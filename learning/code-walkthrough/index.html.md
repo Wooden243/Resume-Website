@@ -5,7 +5,7 @@
 > **出力:** トップページDOM。
 > **設計意図:** JSONが入る箱と共通ナビ。
 
-> **SHA-256:** `6025df11091b3941b32b5c7a0117920cc3fd763e4d5f10c08741e0507106448b`（現行ソースとの整合性確認用）
+> **SHA-256:** `83e825b9bf2164dd17971669b4fc865af3b19b569ea46418ac3a4ba6d660ef34`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -14,6 +14,12 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="機械学習の実装・数値実験とWebアプリ開発の成果物をまとめた技術ポートフォリオ。">
+<link rel="canonical" href="https://wooden243.github.io/mysite/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wooden243 — Technical Portfolio">
+<meta property="og:description" content="機械学習の実装、数値実験、ソフトウェア開発の技術ポートフォリオ。">
+<meta property="og:url" content="https://wooden243.github.io/mysite/">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#102c34">
 <title>Home — Wooden243</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -70,7 +76,7 @@
 </div></div></section>
 </main><footer class="site-footer"><div class="container footer-row">
 <p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
-<nav class="footer-links" aria-label="フッターナビゲーション"><a href="index.html">Home</a><a href="projects/index.html">Projects</a><a href="resume/index.html">About</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="index.html">Home</a><a href="projects/index.html">Projects</a><a href="resume/index.html">About</a><a href="guide.html">Guide</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
 </div></footer>
 </body></html>
 ```

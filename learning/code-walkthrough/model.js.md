@@ -5,7 +5,7 @@
 > **出力:** 新しい配列 / 真偽値 / 個別Project。
 > **設計意図:** documentを使わないためNodeテスト可。
 
-> **SHA-256:** `1e0e76b28987a00fe8c27f77957818b5a4d21c70a7630091c5a03410a30714db`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `a5bfb75ffaabf74c4c52570d380a50ab6160f14fb848cf9a4300ac5dec82516f`（ZIPに入れた元ファイルとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -52,10 +52,11 @@ export function categoriesOf(projects) {
 }
 
 export function formatProjectDate(value) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return 'Date not set';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return '日付未設定';
   const date = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(date.getTime())) return 'Date not set';
-  return new Intl.DateTimeFormat('en', {year: 'numeric', month: 'long', timeZone: 'UTC'}).format(date);
+  if (Number.isNaN(date.getTime())) return '日付未設定';
+  if (date.toISOString().slice(0, 10) !== value) return '日付未設定';
+  return new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: 'long', timeZone: 'UTC'}).format(date);
 }
 ```
 

@@ -5,7 +5,7 @@
 > **出力:** Project配列。
 > **設計意図:** 同じデータから一覧と個別ページを生成。
 
-> **SHA-256:** `5d104611001a28281fdb2932f58fa24d2fa832ee920d9b2fd308511dd2bd272e`（現行ソースとの整合性確認用）
+> **SHA-256:** `2c4cb7cad7dcd6990ae6a5e4e93d4df46e283fec3b0db78909a25b7661ed1763`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -33,7 +33,57 @@
     "featured": true,
     "source": "https://github.com/Wooden243/ml-algorithms",
     "demo": "",
-    "visual": "bandit"
+    "visual": "bandit",
+    "highlights": [
+      {
+        "value": "10",
+        "label": "選択肢（腕）"
+      },
+      {
+        "value": "9",
+        "label": "α・εの条件数"
+      },
+      {
+        "value": "5,000",
+        "label": "条件ごとの試行数"
+      }
+    ],
+    "workflow": [
+      {
+        "title": "問題設定",
+        "detail": "良腕の勝率0.65、残り9腕の勝率0.44。初期予算20から最大100ステップ、予算が0になると終了する。"
+      },
+      {
+        "title": "ε-greedyと価値更新",
+        "detail": "探索確率εでランダム選択し、他は推定価値最大の腕を選ぶ。報酬R∈{−1,+1}を観測後、Q ← Q + α(R−Q)で更新する。"
+      },
+      {
+        "title": "シミュレーションと評価",
+        "detail": "α∈{0.05, 0.20, 0.80}、ε∈{0.02, 0.10, 0.40}の9条件を比較。予算推移、破産率、良腕選択率を集計する。"
+      }
+    ],
+    "resources": [
+      {
+        "label": "コードと実行方法",
+        "url": "https://github.com/Wooden243/ml-algorithms/tree/main/multi-armed-bandit"
+      },
+      {
+        "label": "理論と数式の導出",
+        "url": "https://github.com/Wooden243/ml-algorithms/blob/main/multi-armed-bandit/docs/theory-and-derivations.md"
+      },
+      {
+        "label": "分析レポート",
+        "url": "https://github.com/Wooden243/ml-algorithms/blob/main/multi-armed-bandit/docs/presentation-analysis.md"
+      },
+      {
+        "label": "実験結果のCSV",
+        "url": "https://github.com/Wooden243/ml-algorithms/blob/main/multi-armed-bandit/results/summary.csv"
+      },
+      {
+        "label": "予算推移のグラフ",
+        "url": "https://github.com/Wooden243/ml-algorithms/blob/main/multi-armed-bandit/results/budget_paths_grid.png"
+      }
+    ]
   },
   {
     "id": 2,
@@ -59,7 +109,57 @@
     "featured": true,
     "source": "https://github.com/Wooden243/chatbot",
     "demo": "",
-    "visual": "chatbot"
+    "visual": "chatbot",
+    "highlights": [
+      {
+        "value": "UI + API",
+        "label": "画面とREST API"
+      },
+      {
+        "value": "SQLite",
+        "label": "会話履歴を保存"
+      },
+      {
+        "value": "API / E2E",
+        "label": "2種類のテスト"
+      }
+    ],
+    "workflow": [
+      {
+        "title": "フロントエンド",
+        "detail": "Next.js・React・TypeScriptで会話一覧、メッセージ表示、送信フォーム、エラー表示を構成する。"
+      },
+      {
+        "title": "APIとデータモデル",
+        "detail": "FastAPI・Pydanticで入力を検証し、SQLAlchemyのConversationとMessageをSQLiteへ永続化する。"
+      },
+      {
+        "title": "AIとの連携",
+        "detail": "会話履歴をOpenAI APIへ渡す。成功時だけユーザー文と回答を保存し、失敗時は通信・認証・利用制限などのエラーを扱う。"
+      },
+      {
+        "title": "検証",
+        "detail": "pytestでAPIなどのロジックを、Playwrightでブラウザー操作を検証する。実API通信と公開運用は検証対象外。"
+      }
+    ],
+    "resources": [
+      {
+        "label": "コードとセットアップ",
+        "url": "https://github.com/Wooden243/chatbot"
+      },
+      {
+        "label": "テストと検証記録",
+        "url": "https://github.com/Wooden243/chatbot/blob/main/docs/VERIFICATION.md"
+      },
+      {
+        "label": "FastAPIの実装",
+        "url": "https://github.com/Wooden243/chatbot/blob/main/backend/app/api.py"
+      },
+      {
+        "label": "Reactの実装",
+        "url": "https://github.com/Wooden243/chatbot/tree/main/frontend/src"
+      }
+    ]
   }
 ]
 ```

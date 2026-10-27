@@ -1,39 +1,32 @@
-# Requirements and evidence / Resume Website
+# 目的・要件・実装状況
 
-## Source and interpretation
+## 目的
 
-Based on the supplied Recursion "Resume Website" screenshot. The top section lists functional requirements (custom subdomain; introduction; portfolio project list and individual descriptions; skills and experience resume page; downloadable PDF; HTTPS; responsive pages; working links/resources), non-functional requirements (security; uptime >99%; simple push-to-deploy workflow; provisioning a VM and learning deployment), and an optional exercise to load portfolio entries from JSON with JavaScript/AJAX.
+機械学習の数値実験とソフトウェア開発の成果を、検証可能な技術資料・実装コードへのリンクとともに公開する。初期構成は学習用のResume Website課題に由来しますが、現在は公開ポートフォリオへ用途を変更しています。
 
-The screenshot contains no real domain, personal profile, project credentials, or cloud account. We **do not invent** those details. Sample content is labeled as such. No account changes, domain purchase, VM provisioning, or deployment were authorized/performed.
+## 現在の実装
 
-## Traceability table
+| 要件 | 実装 / 根拠 |
+|---|---|
+| 公開済みプロジェクトの紹介 | `data/projects.json`から2件を読み込む |
+| 作品の分類・検索 | `projects/index.html`、`assets/js/projects.js` |
+| 詳細な技術内容 | 共通詳細ページで問題設定、処理の流れ、結果と制約を表示 |
+| 実装根拠 | 各作品の`resources`からGitHubソース・検証資料へ接続 |
+| スキル概要 | `resume/index.html`、`data/profile.json` |
+| アクセシビリティ | セマンティックHTML、キーボード操作、読み上げ用ラベル、reduced-motion |
+| 検証 | Node.js、Python HTTPテスト、参照整合性チェック、GitHub Actions |
+| 公開 | GitHub Pagesへ自動デプロイ（結果はActionsで確認） |
+| SEO | meta description、Open Graph、canonical、robots、sitemap、404 |
+| プライバシー | 本名・メール・未確認の経歴を表示しない |
 
-| ID | Source requirement | Implementation / evidence | Validation | Status |
-| --- | --- | --- | --- | --- |
-| F01 | Custom subdomain reachable (e.g. `resume.example.org`) | `docs/deployment.md` gives DNS and GitHub Pages setup | Requires actual domain ownership and deployment | **Not completed** (external account required) |
-| F02 | Homepage clearly introduces the person/site | `index.html`, `data/profile.json`, `assets/js/main.js` | Browser smoke / manual review | **Implemented as labeled template**; personal details must be supplied |
-| F03 | Page listing completed portfolio projects | `projects/index.html`, `projects.js`, `data/projects.json` | Node tests and browser smoke | **Implemented with fictional demo projects** |
-| F04 | Dedicated explanation for each project | `projects/detail.html`, `detail.js` | Browser smoke of existing and missing slugs | **Implemented** |
-| F05 | Resume page with skills and experience | `resume/index.html`, `resume.js`, `data/profile.json` | Browser smoke | **Implemented with placeholders** |
-| F06 | Downloadable PDF resume | `assets/sample-resume.pdf`, `resume/index.html` | PDF file signature, HTTP route, PDF rendered preview | **Implemented sample PDF**, requires replacement |
-| F07 | Accessible via HTTPS | `.github/workflows/deploy.yml`, `docs/deployment.md` | Requires deployed Pages URL | **Deployment prerequisite documented; not verified** |
-| F08 | Responsive design with navigation across devices | `assets/css/styles.css`, mobile nav in `site.js` | Mobile/desktop Chromium screenshots | **Implemented; browser visual review performed** |
-| F09 | All public assets and URLs work | Relative asset paths, URL computed from `import.meta.url`, semantic links | HTML/static route checks and browser smoke | **Checked locally**; cannot prove future hosted links |
-| N01 | Server/user security | Static-only architecture, DOM `textContent`, same-origin JSON, no credentials | Code review, tests for unsafe HTML rendering | **Basic code practices implemented**, hosting protections external |
-| N02 | >99% yearly server uptime | Static site supports managed hosting; deployment and monitoring guidance | Requires continuous monitoring data | **Not verifiable in advance**, not claimed |
-| N03 | Push development updates easily | GitHub Pages Actions workflow, README | Workflow syntax/file exists; no actual remote deploy run | **Configured but not executed** |
-| N04 | Deploy to new VM/cloud | `docs/deployment.md` contains alternative VPS/Caddy instructions | No VM credentials supplied | **Instructions only**, not provisioned |
-| O01 | Store portfolio data in JSON | `data/projects.json` | JSON parsing / unit test | **Implemented** |
-| O02 | Load JSON dynamically using JavaScript/AJAX | `data.js` with `fetch()` and `projects.js` / `detail.js` rendering | Browser smoke after HTTP serve | **Implemented** |
-| O03 | New JSON entry automatically yields new project page | Single dynamic `projects/detail.html?slug=...` template | Program logic + unit test | **Implemented** without per-project HTML copies |
+## 掲載内容の範囲
 
-## Design choices distinct from source
+`ml-algorithms`はε-greedy法の計算実験であり、基盤モデルや深層学習の独自実装ではありません。`chatbot`はローカル向けアプリであり、商用運用、実OpenAI API呼び出し、マルチユーザー認証を検証したものではありません。
 
-- This is a **static website**, rather than a running Node server. Static GitHub Pages deployment is an acceptable implementation strategy for the portfolio UI; a VM is described as an optional deployment method.
-- Project records, work experience, email address, and resume are demonstrative. They must be replaced with verified public information before actual personal use.
-- `projects/detail.html?slug=...` implements individual project views from a common template; a missing slug shows a friendly 404-like message, but the HTTP status remains 200 for the shared static page.
-- Search, category filters, decorative CSS mockups, the customization guide, and automated tests are enhancements.
+## 未実装・未保証
 
-## No hidden claims
+独自ドメイン、クラウドサーバー／VPSの運用、年間稼働率99%保証、正式なアクセシビリティ認証、実際の公開サイトの継続監視、採用応募フォームや個人情報送信は本リポジトリの機能に含みません。履歴書PDFも公開しません。
 
-Tests demonstrate local behavior only. They do not establish global availability, a registered domain, deployed TLS configuration, or third-party SLA compliance.
+## 今後の拡張
+
+新しい成果物の追加、実験結果の図表・統計的不確実性の充実、ブラウザーE2E・アクセシビリティの自動検証、各プロジェクトのソース・CI状況の可視化を検討できます。実装済みの事実とは区別して管理します。

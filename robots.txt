@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wooden243.github.io/mysite/sitemap.xml

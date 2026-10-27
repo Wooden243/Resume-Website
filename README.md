@@ -1,57 +1,71 @@
-# Wooden243 — Technical Portfolio
+# Wooden243 / mysite
 
-機械学習アルゴリズムの実装・数値実験と、Webアプリケーション開発の成果物をまとめる静的ポートフォリオです。掲載内容は公開済みのGitHubコード・資料で裏付けられる範囲に限定しています。
+機械学習アルゴリズムの実装・数値実験と、ソフトウェア開発成果をまとめた**技術ポートフォリオ**です。
 
-## 公開プロジェクト
+**サイト:** https://wooden243.github.io/mysite/  
+**作品一覧:** https://wooden243.github.io/mysite/projects/  
+**掲載基準:** GitHub上で公開済みのコード・実験結果・テスト・技術資料に裏付けられる内容のみ。
 
-| プロジェクト | 内容 | GitHub |
-| --- | --- | --- |
-| Machine Learning Algorithms & Experiments | 予算制約付き多腕バンディットに対するε-greedy法の実装、9条件×各5,000試行の実験と解説 | [ml-algorithms](https://github.com/Wooden243/ml-algorithms) |
-| ChatBot — Full-Stack Web Application | Next.js・FastAPI・SQLite・OpenAI APIによる会話履歴付きチャットアプリ、API/E2Eテスト | [chatbot](https://github.com/Wooden243/chatbot) |
+## Featured projects
 
-`ml-algorithms` は教育・実験用途の実装で、深層強化学習モデルや新規の研究手法を実装したものではありません。`chatbot` はローカル単一ユーザー向けの開発成果であり、公開サービスの運用実績はありません。
+| 成果物 | 技術・実装内容 | 元リポジトリ |
+|---|---|---|
+| Machine Learning Algorithms & Experiments | Python/NumPyによるε-greedy多腕バンディット、9条件×各5,000試行の予算・破産リスク評価、数式解説 | [ml-algorithms](https://github.com/Wooden243/ml-algorithms) |
+| ChatBot — Full-Stack Web Application | Next.js・TypeScript・FastAPI・SQLite・OpenAI APIの連携、会話管理、履歴永続化、API/E2Eテスト | [chatbot](https://github.com/Wooden243/chatbot) |
 
-## サイト構成
+各作品の詳細ページには**問題設定→処理構成→実装・検証→結果と制約**に加え、実験条件やシステム構成のハイライト、一次資料・ソースコードへのリンクを掲載しています。誇張を避けるため、シミュレーション結果は特定の実験条件での観察として扱い、AI APIの実通信や公開サービスの運用実績は主張しません。
 
-| 場所 | 内容 |
-| --- | --- |
-| `index.html` | トップページと2件の注目プロジェクト |
-| `projects/index.html` | カテゴリ・キーワード検索付き作品一覧 |
-| `projects/detail.html?slug=...` | 共通詳細ページ（概要・課題・実装・結果・GitHubリンク） |
-| `resume/index.html` | About・Skills・掲載作品の概要 |
-| `data/projects.json` | 作品のタイトル、技術スタック、説明、URLの正本 |
-| `data/profile.json` | GitHubユーザー名、紹介文、使用技術の正本 |
-| `assets/js/` | DOM生成、表示、データ取得、検索ロジック |
-| `assets/css/styles.css` | レスポンシブな表示スタイル |
+## 構成と設計
 
-HTML/CSS/JavaScript（ES modules）の静的サイトです。データをJSONから読み込むため、プレビューはHTTPサーバー経由で行ってください。ブラウザー用ランタイムパッケージの導入は不要です。
+- `index.html`: トップページと代表作品
+- `projects/index.html`: 全作品、カテゴリ・キーワード検索（条件をURLに保持）
+- `projects/detail.html?slug=...`: 作品共通の詳細ページと根拠資料
+- `resume/index.html`: About / Skills / 作品の概要
+- `guide.html`: 実装範囲・サイト構成・更新方法の公開ガイド
+- `404.html` / `robots.txt` / `sitemap.xml`: フォールバックと検索エンジン向けメタデータ
+- `data/projects.json` / `data/profile.json`: 表示データの正本
+- `assets/js/`: JSON取得、検索、DOM生成、ページ表示
+- `assets/css/styles.css`: レスポンシブ・キーボード操作・印刷を考慮したスタイル
+- `learning/`: ソース全文とSHA-256を含む学習資料（初期テンプレート由来の解説を含むため、現行仕様は上記の正本を参照）
 
-## ローカルプレビュー
+**技術:** HTML / CSS / JavaScript ES modules、ビルド不要の静的サイト。ユーザーデータ送信機能・Cookie・サイト独自の外部APIキーはありません。文字列は基本的に`textContent`で描画します。
+
+## ローカルで実行
 
 ```bash
+git clone https://github.com/Wooden243/mysite.git
+cd mysite
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-`http://127.0.0.1:8000/` を開きます。`file://` から直接開くとJSONの `fetch()` が失敗する場合があります。
+`http://127.0.0.1:8000/` にアクセスします。JSONを`fetch()`するため、`file://`で直接HTMLを開く方法は推奨しません。
 
 ## テスト
+
+Node.js（18以降）とPython 3を用意し、以下を実行します。
 
 ```bash
 bash scripts/verify.sh
 ```
 
-Node.jsのテストとPythonのHTTPテスト、静的ファイル参照の検証を実行します。テスト実行環境にはNode.jsとPythonが必要です。
+作品データ、検索・ソート、HTML構成、HTTP応答、内部参照・JS import、学習資料の全文・SHA-256同期を検査します。PR時と`main`へのpush時はGitHub Actionsの**Verify portfolio**を実行します。ブラウザーによる画面の目視・外部リポジトリのリンク到達性は別途確認が必要です。
 
-## 成果物の追加
+## 作品の追加・更新
 
-`data/projects.json` に一意の `id`・`slug` を持つ実際の成果物を追加すると、作品一覧・検索・詳細ページへ自動反映されます。確認できないデモリンク・実績・評価値は掲載しません。 [編集ガイド](docs/customization.md)を参照してください。
+`data/projects.json`に`id`・`slug`が一意のエントリを追加します。通常の説明項目のほか、次の配列を任意で指定できます。
 
-## GitHub Pages
+| フィールド | 内容 |
+|---|---|
+| `highlights` | `{ "value": "...", "label": "..." }`：主要な数値または仕様 |
+| `workflow` | `{ "title": "...", "detail": "..." }`：実験手順やアプリケーション構成 |
+| `resources` | `{ "label": "...", "url": "https://..." }`：ソース・検証資料 |
 
-`.github/workflows/deploy.yml` に静的サイトの自動デプロイ定義があります。リポジトリの **Settings → Pages** でSourceを **GitHub Actions** に設定する必要があります。設定が有効なら、`main` へのpushでデプロイが起動します。 [公開ガイド](docs/deployment.md)を参照してください。デプロイ成功とURLの到達性はGitHub Actions側で別途確認してください。
+詳しくは[編集ガイド](docs/customization.md)を参照してください。
 
-## 学習資料について
+## デプロイ
 
-`learning/` 以下には初期テンプレートの構築・改修用の解説も残しています。対応するソース全文とSHA-256は更新していますが、一部の設例・解説は初期テンプレートを参照します。**現在表示する公開成果物の正本は `data/projects.json` です。**
+`.github/workflows/deploy.yml`が`main`更新時にGitHub Pagesへデプロイします。配信アーティファクトには**公開サイト本体のみ**を含め、教材・テスト・開発用文書・サンプル履歴書PDFは含めません。詳しくは[公開手順](docs/deployment.md)を参照してください。
 
-個人メールアドレス、実名、未確認の就業歴、サンプル履歴書PDFを公開画面に表示しません。リポジトリ内に残る `assets/sample-resume.pdf` は初期テンプレートの未使用ファイルであり、現行サイトからリンクしていません。
+## プライバシーと掲載範囲
+
+氏名、個人メールアドレス、架空の職歴、未確認の学位等は掲載していません。プロフィールはGitHubハンドル`Wooden243`を使用します。各プロジェクトのコード・実験記録はそれぞれの元リポジトリで管理しています。

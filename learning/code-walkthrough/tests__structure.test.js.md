@@ -5,7 +5,7 @@
 > **出力:** 構造検査の成否。
 > **設計意図:** 必要なファイルがZIPにあるか確認。
 
-> **SHA-256:** `e702e6db23f7aa6d125aa4a6ca833c64ffe8b7e287e88e4fb7e5563c89146445`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `07da83d30a67739f5b99c33bd5c6724e983be08fba8540ede3d3787de72734a0`（ZIPに入れた元ファイルとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -33,11 +33,10 @@ test('projects listing fetches JSON via import module',()=>{
  assert.match(contents('projects/index.html'),/src="\.\.\/assets\/js\/projects\.js"/);
  assert.match(contents('assets/js/data.js'),/projects\.json/);
 });
-test('resume PDF exists and has PDF signature',()=>{
- const path=new URL('../assets/sample-resume.pdf',import.meta.url);
- const pdf=readFileSync(path);
- assert.equal(pdf.subarray(0,5).toString(),'%PDF-');
- assert.ok(pdf.length>2500);
+test('public metadata and 404 page exist',()=>{
+ for(const name of ['sitemap.xml','robots.txt','404.html']) {
+  assert.ok(statSync(new URL(`../${name}`,import.meta.url)).size>20);
+ }
 });
 test('no absolute asset links (works under repository subpath)',()=>{
  for(const file of files){

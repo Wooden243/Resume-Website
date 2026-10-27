@@ -40,8 +40,9 @@ export function categoriesOf(projects) {
 }
 
 export function formatProjectDate(value) {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return 'Date not set';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return '日付未設定';
   const date = new Date(`${value}T00:00:00Z`);
-  if (Number.isNaN(date.getTime())) return 'Date not set';
-  return new Intl.DateTimeFormat('en', {year: 'numeric', month: 'long', timeZone: 'UTC'}).format(date);
+  if (Number.isNaN(date.getTime())) return '日付未設定';
+  if (date.toISOString().slice(0, 10) !== value) return '日付未設定';
+  return new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: 'long', timeZone: 'UTC'}).format(date);
 }

@@ -5,7 +5,7 @@
 > **出力:** スキル・経歴・ダウンロードボタン。
 > **設計意図:** 実際の履歴書情報はJSONに分離。
 
-> **SHA-256:** `c2c2e16104c115e0085c9ccac812d5fb7fb9dc3eb63313c08698ade0b6c848f4`（現行ソースとの整合性確認用）
+> **SHA-256:** `2c34a8ae2547375936cd24d413487beccde8ddc79e1b48e3c44034a52f2171d4`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -14,6 +14,12 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="公開プロジェクトに基づく使用技術と取り組み。">
+<link rel="canonical" href="https://wooden243.github.io/mysite/resume/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About — Wooden243">
+<meta property="og:description" content="公開プロジェクトに基づく使用技術と開発・検証の取り組み。">
+<meta property="og:url" content="https://wooden243.github.io/mysite/resume/">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#102c34">
 <title>About — Wooden243</title>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -40,7 +46,7 @@
 <div id="resume-dynamic" aria-live="polite"><p class="loading-hint">読み込み中…</p></div></div>
 </div></main><footer class="site-footer"><div class="container footer-row">
 <p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
-<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="../guide.html">Guide</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
 </div></footer>
 </body></html>
 ```

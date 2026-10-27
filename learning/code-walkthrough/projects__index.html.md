@@ -5,7 +5,7 @@
 > **出力:** 検索欄・フィルター・一覧コンテナ。
 > **設計意図:** イベントの実装はprojects.jsが担当。
 
-> **SHA-256:** `783fcac6c0236f63a4e707dc04d8b95de9411a723451e845b64d49d2964afb6e`（現行ソースとの整合性確認用）
+> **SHA-256:** `dd25dc599c2fae0433cdb2884dfe7b00e06237df3f1fb86b404c62b9e1e6abec`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -14,6 +14,12 @@
 <html lang="ja"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="機械学習アルゴリズムとWebアプリ開発の公開プロジェクト。">
+<link rel="canonical" href="https://wooden243.github.io/mysite/projects/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects — Wooden243">
+<meta property="og:description" content="機械学習アルゴリズムとWebアプリケーション開発の成果物一覧。">
+<meta property="og:url" content="https://wooden243.github.io/mysite/projects/">
+<meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#102c34">
 <title>Projects — Wooden243</title>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
@@ -35,12 +41,12 @@
 <p>実際に公開しているコードと技術資料の一覧です。カテゴリ・技術名から絞り込めます。詳細ページからGitHubのソースを閲覧できます。</p></header>
 <section class="project-listing" aria-label="プロジェクト一覧">
 <div class="controls"><div class="filter-list" id="category-filters" aria-label="カテゴリ"></div>
-<label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">プロジェクト検索</span><input type="search" id="project-search" autocomplete="off" placeholder="技術・プロジェクト名で検索…"></label></div>
+<div class="search-box"><span aria-hidden="true">⌕</span><label class="sr-only" for="project-search">プロジェクト検索</label><input type="search" id="project-search" autocomplete="off" placeholder="技術・プロジェクト名で検索…"><button id="clear-search" type="button" hidden aria-label="検索語をクリア">クリア</button></div></div>
 <div class="results-line" id="project-count" role="status">読み込み中…</div>
 <div class="project-grid" id="projects-grid"><p class="loading-hint">プロジェクトを読み込み中…</p></div>
 </section></div></main><footer class="site-footer"><div class="container footer-row">
 <p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
-<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="../guide.html">Guide</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
 </div></footer>
 </body></html>
 ```
