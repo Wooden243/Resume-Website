@@ -5,60 +5,44 @@
 > **出力:** 検索欄・フィルター・一覧コンテナ。
 > **設計意図:** イベントの実装はprojects.jsが担当。
 
-> **SHA-256:** `08d8edc62d26e7ffc0b44aabe138a7afb9378cd38874eb96a16ddfd177566cea`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `783fcac6c0236f63a4e707dc04d8b95de9411a723451e845b64d49d2964afb6e`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
 ```html
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore sample portfolio projects with dynamic filtering and search.">
-  <meta name="theme-color" content="#102c34">
-  <title>Projects — Resume Website</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <script type="module" src="../assets/js/projects.js"></script>
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="template-strip"><strong>Portfolio template</strong> Sample content only — customize before publishing.</div>
-<header class="site-header">
-  <div class="container nav-inner">
-    <a class="brand" href="../index.html" aria-label="Portfolio template home"><span class="brand-mark" aria-hidden="true">✳</span> yourfolio<span class="sr-only"></span></a>
-    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
-    <nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../projects/index.html" aria-current="page">Projects</a>
-      <a href="../resume/index.html">Resume</a>
-      <a class="nav-contact" href="../index.html#contact">Get in touch ↗</a>
-    </nav>
-  </div>
-</header>
-<main id="main">
-  <div class="container"><header class="page-intro"><div class="eyebrow">The collection</div><h1>Projects<span style="color:#dc684b">.</span></h1>
-    <p>Browse the complete collection of sample case studies. Filter by category, or search for a particular technology or idea.</p>
-  </header>
-  <section class="project-listing" aria-label="Projects">
-    <div class="controls"><div class="filter-list" id="category-filters" aria-label="Filter by category"></div>
-      <label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">Search projects</span><input type="search" id="project-search" autocomplete="off" placeholder="Search projects…"></label>
-    </div>
-    <div class="results-line" id="project-count" role="status">Loading projects…</div>
-    <div class="project-grid" id="projects-grid"><p class="loading-hint">Loading the project collection…</p></div>
-  </section></div>
-</main>
-<footer class="site-footer">
-  <div class="container footer-row">
-    <p>© <span data-year>2026</span> yourfolio. A customizable project template.</p>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">Resume</a><a href="../guide.html">Setup guide</a>
-    </nav>
-  </div>
-</footer>
-</body>
-</html>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="機械学習アルゴリズムとWebアプリ開発の公開プロジェクト。">
+<meta name="theme-color" content="#102c34">
+<title>Projects — Wooden243</title>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<script type="module" src="../assets/js/projects.js"></script>
+</head><body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="container nav-inner">
+<a class="brand" href="../index.html" aria-label="Wooden243 ポートフォリオ ホーム"><span class="brand-mark" aria-hidden="true">✳</span> Wooden243</a>
+<button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
+<nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="メインナビゲーション">
+<a href="../index.html">Home</a>
+<a href="../projects/index.html" aria-current="page">Projects</a>
+<a href="../resume/index.html">About</a>
+<a class="nav-contact" href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</nav></div></header>
+<main id="main"><div class="container">
+<header class="page-intro"><div class="eyebrow">Project archive</div><h1>Projects<span style="color:#dc684b">.</span></h1>
+<p>実際に公開しているコードと技術資料の一覧です。カテゴリ・技術名から絞り込めます。詳細ページからGitHubのソースを閲覧できます。</p></header>
+<section class="project-listing" aria-label="プロジェクト一覧">
+<div class="controls"><div class="filter-list" id="category-filters" aria-label="カテゴリ"></div>
+<label class="search-box"><span aria-hidden="true">⌕</span><span class="sr-only">プロジェクト検索</span><input type="search" id="project-search" autocomplete="off" placeholder="技術・プロジェクト名で検索…"></label></div>
+<div class="results-line" id="project-count" role="status">読み込み中…</div>
+<div class="project-grid" id="projects-grid"><p class="loading-hint">プロジェクトを読み込み中…</p></div>
+</section></div></main><footer class="site-footer"><div class="container footer-row">
+<p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+</div></footer>
+</body></html>
 ```
 
 ## 2. 上から順番の行・ブロック解説
