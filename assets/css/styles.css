@@ -287,3 +287,25 @@ p { color: var(--ink-soft); }
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
 }
 .art-generic .art-main-number { font-size: 20px; line-height: 1.25; overflow-wrap: anywhere; }
+
+/* Structured case-study presentation. */
+.case-highlights {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px;}
+.case-metric {padding:23px 17px;background:#fff;border:1px solid var(--line);border-radius:14px;display:flex;flex-direction:column;gap:8px;}
+.case-metric strong {font-size:clamp(21px,3.5vw,33px);line-height:1.1;letter-spacing:-.04em;color:var(--deep);}
+.case-metric span {font-size:12px;line-height:1.6;color:var(--ink-soft);font-weight:750;}
+.case-workflow {list-style:none;counter-reset:step;display:grid;gap:12px;padding:0;margin:0;}
+.case-workflow li {counter-increment:step;position:relative;border:1px solid var(--line);border-radius:14px;padding:20px 21px 20px 62px;background:#fff;}
+.case-workflow li::before {content:counter(step,decimal-leading-zero);position:absolute;left:19px;top:23px;font-size:12px;font-weight:850;color:var(--accent);}
+.case-workflow h3 {font-size:17px;letter-spacing:-.02em;margin:0 0 8px;}
+.case-workflow p {font-size:13px;line-height:1.8;margin:0;}
+.resource-list {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+.resource-link {display:flex;align-items:center;min-height:57px;padding:14px 17px;background:#fff;border:1px solid #ccded4;border-radius:12px;color:var(--deep);font-weight:800;font-size:13px;text-decoration:none;transition:background .18s,border-color .18s;}
+.resource-link:hover {background:#edf7f0;border-color:#77b2a0;}
+.case-links {flex-wrap:wrap;}
+#clear-search {background:transparent;border:0;color:var(--ink-soft);font-size:12px;font-weight:750;cursor:pointer;padding:4px;}
+#clear-search[hidden] {display:none;}
+.search-box input {min-width:0;}
+@media(max-width:720px){.case-highlights{gap:7px}.case-metric{padding:14px 10px}.case-metric span{font-size:10px}.resource-list{grid-template-columns:1fr}}
+@media(max-width:400px){.case-highlights{grid-template-columns:1fr}.case-metric{flex-direction:row;align-items:center;gap:15px}.case-metric strong{min-width:80px}}
+@media(prefers-reduced-motion:reduce){.resource-link{transition:none}}
+@media print{.site-header,.site-footer,.menu-toggle,.hero-actions,.case-links,.cta{display:none!important}.case-metric,.case-workflow li,.project-card{break-inside:avoid}body{background:#fff}}
