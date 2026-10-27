@@ -5,7 +5,7 @@
 > **出力:** HTTPステータス / 本文 / Content-Type。
 > **設計意図:** 実際のHTTP配信を検証。
 
-> **SHA-256:** `f05916d184907ab5c437f1a8a9e9c99bd955a31d79e975eb2c0a40346bab6be4`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `32fe919f79c6f3ebbfd156c7c5c03c937802ded60cc747ebcd5d0abbb3cd3261`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -53,7 +53,7 @@ class StaticSiteHTTPTests(unittest.TestCase):
         self.assertIn(b'<main id="main">',data)
 
     def test_pages_and_guide_are_accessible(self):
-        for path in ['/projects/index.html','/projects/detail.html?slug=foodie-finder',
+        for path in ['/projects/index.html','/projects/detail.html?slug=ml-algorithms',
                      '/resume/index.html','/guide.html']:
             with self.subTest(path=path):
                 self.assertEqual(self.get(path)[0],200)
@@ -63,8 +63,8 @@ class StaticSiteHTTPTests(unittest.TestCase):
         self.assertEqual(status,200)
         self.assertIn('application/json',headers['Content-Type'])
         data=json.loads(body)
-        self.assertGreaterEqual(len(data),5)
-        self.assertTrue(any(p['slug']=='foodie-finder' for p in data))
+        self.assertEqual(len(data),2)
+        self.assertTrue(any(p['slug']=='ml-algorithms' for p in data))
 
     def test_profile_json(self):
         _,_,body = self.get('/data/profile.json')
