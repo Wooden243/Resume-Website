@@ -5,7 +5,7 @@
 > **出力:** フィルター後のカード群。
 > **設計意図:** 初回だけfetchし、以降はメモリ上で再描画。
 
-> **SHA-256:** `4e2128fa7a94c2c8677e6636845730c7c39de73f986f5a1531187750bc9865b2`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `ed9ae054cbd888b4efc5ca733e8d9e3c47ce6a736088e1e170bd7da1ee3476d7`（ZIPに入れた元ファイルとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -21,15 +21,35 @@ const grid = document.getElementById('projects-grid');
 const search = document.getElementById('project-search');
 const choices = document.getElementById('category-filters');
 const tally = document.getElementById('project-count');
+const clear = document.getElementById('clear-search');
 let projects = [];
 let activeCategory = 'All';
 
+function syncUrl() {
+  const url = new URL(window.location.href);
+  const query = search.value.trim();
+  if (query) url.searchParams.set('q', query);
+  else url.searchParams.delete('q');
+  if (activeCategory !== 'All') url.searchParams.set('category', activeCategory);
+  else url.searchParams.delete('category');
+  window.history.replaceState(null, '', url);
+}
+
+function readUrl() {
+  const params = new URLSearchParams(window.location.search);
+  search.value = params.get('q') || '';
+  const category = params.get('category') || 'All';
+  activeCategory = categoriesOf(projects).includes(category) ? category : 'All';
+}
+
+
 function renderList() {
   const filtered = projects.filter(item => projectMatches(item, search.value, activeCategory));
-  tally.textContent = `${filtered.length} of ${projects.length} projects`;
+  tally.textContent = `${filtered.length} / ${projects.length} 件のプロジェクト`;
+  if (clear) clear.hidden = !search.value;
   if (!filtered.length) {
     grid.replaceChildren(node('div', {className:'status-panel empty-results'}, [
-      node('h3', {text:'Nothing found'}), node('p', {text:'Try another search term or category.'})
+      node('h3', {text:'該当するプロジェクトがありません'}), node('p', {text:'検索語やカテゴリを変更してください。'})
     ]));
     return;
   }
@@ -38,9 +58,10 @@ function renderList() {
 
 function renderFilters() {
   choices.replaceChildren(...categoriesOf(projects).map(category => {
-    const button = node('button', {className: `filter-pill${activeCategory === category ? ' selected' : ''}`, text: category, attrs: {type:'button', 'aria-pressed': String(activeCategory === category)}});
+    const button = node('button', {className: `filter-pill${activeCategory === category ? ' selected' : ''}`, text: category === 'All' ? 'すべて' : category, attrs: {type:'button', 'aria-pressed': String(activeCategory === category)}});
     button.addEventListener('click', () => {
       activeCategory = category;
+      syncUrl();
       renderFilters();
       renderList();
     });
@@ -51,15 +72,18 @@ function renderFilters() {
 async function initProjects() {
   try {
     projects = normalizeProjects(await loadProjects());
+    readUrl();
     renderFilters();
     renderList();
   } catch (error) {
     console.error(error);
-    showError(grid, 'Projects could not be loaded. Please refresh or check the local server.', initProjects);
+    showError(grid, 'プロジェクト情報を読み込めませんでした。HTTPサーバー経由で開いてください。', initProjects);
   }
 }
 
-search.addEventListener('input', renderList);
+search.addEventListener('input', () => {syncUrl(); renderList();});
+if (clear) clear.addEventListener('click', () => { search.value = ''; syncUrl(); renderList(); search.focus(); });
+window.addEventListener('popstate', () => {readUrl(); renderFilters(); renderList();});
 initProjects();
 ```
 
