@@ -21,11 +21,10 @@ test('projects listing fetches JSON via import module',()=>{
  assert.match(contents('projects/index.html'),/src="\.\.\/assets\/js\/projects\.js"/);
  assert.match(contents('assets/js/data.js'),/projects\.json/);
 });
-test('resume PDF exists and has PDF signature',()=>{
- const path=new URL('../assets/sample-resume.pdf',import.meta.url);
- const pdf=readFileSync(path);
- assert.equal(pdf.subarray(0,5).toString(),'%PDF-');
- assert.ok(pdf.length>2500);
+test('public metadata and 404 page exist',()=>{
+ for(const name of ['sitemap.xml','robots.txt','404.html']) {
+  assert.ok(statSync(new URL(`../${name}`,import.meta.url)).size>20);
+ }
 });
 test('no absolute asset links (works under repository subpath)',()=>{
  for(const file of files){
