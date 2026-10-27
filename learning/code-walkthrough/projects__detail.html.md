@@ -5,52 +5,39 @@
 > **出力:** 詳細ページの受け皿。
 > **設計意図:** 1枚のHTMLで複数プロジェクトを表示。
 
-> **SHA-256:** `51547f504bd0824703eea930e154bffa20cee46ce2f9ed484f73ade21c4bf859`（ZIPに入れた元ファイルとの整合性確認用）
+> **SHA-256:** `3981545bf70805903d282b7279b78c3599d20f90b9221f5db33e20e1783db656`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
 ```html
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A data-driven case study with overview, approach, and results.">
-  <meta name="theme-color" content="#102c34">
-  <title>Project details — Resume Website</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/styles.css">
-  <script type="module" src="../assets/js/detail.js"></script>
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="template-strip"><strong>Portfolio template</strong> Sample content only — customize before publishing.</div>
-<header class="site-header">
-  <div class="container nav-inner">
-    <a class="brand" href="../index.html" aria-label="Portfolio template home"><span class="brand-mark" aria-hidden="true">✳</span> yourfolio<span class="sr-only"></span></a>
-    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
-    <nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../projects/index.html" aria-current="page">Projects</a>
-      <a href="../resume/index.html">Resume</a>
-      <a class="nav-contact" href="../index.html#contact">Get in touch ↗</a>
-    </nav>
-  </div>
-</header>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="課題、実装方法、結果と制約を紹介するプロジェクト詳細。">
+<meta name="theme-color" content="#102c34">
+<title>Project details — Wooden243</title>
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/styles.css">
+<script type="module" src="../assets/js/detail.js"></script>
+</head><body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="container nav-inner">
+<a class="brand" href="../index.html" aria-label="Wooden243 ポートフォリオ ホーム"><span class="brand-mark" aria-hidden="true">✳</span> Wooden243</a>
+<button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
+<nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="メインナビゲーション">
+<a href="../index.html">Home</a>
+<a href="../projects/index.html" aria-current="page">Projects</a>
+<a href="../resume/index.html">About</a>
+<a class="nav-contact" href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</nav></div></header>
 <main id="main"><div class="container">
-  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Projects</a><span aria-hidden="true">/</span><span>Details</span></nav>
-  <article id="project-detail" class="detail-wrapper" aria-live="polite"><p class="loading-hint">Loading project details…</p></article>
-</div></main>
-<footer class="site-footer">
-  <div class="container footer-row">
-    <p>© <span data-year>2026</span> yourfolio. A customizable project template.</p>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">Resume</a><a href="../guide.html">Setup guide</a>
-    </nav>
-  </div>
-</footer>
-</body>
-</html>
+<nav class="breadcrumb" aria-label="現在位置"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Projects</a><span aria-hidden="true">/</span><span>Detail</span></nav>
+<article id="project-detail" class="detail-wrapper" aria-live="polite"><p class="loading-hint">詳細を読み込み中…</p></article>
+</div></main><footer class="site-footer"><div class="container footer-row">
+<p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="../index.html">Home</a><a href="../projects/index.html">Projects</a><a href="../resume/index.html">About</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+</div></footer>
+</body></html>
 ```
 
 ## 2. 上から順番の行・ブロック解説
