@@ -5,7 +5,7 @@
 > **出力:** 自動テストの成否。
 > **設計意図:** DOMなしで高速にテストできる。
 
-> **SHA-256:** `c1ad3227c543760964c35f609dc5af734aea8b1a5eb5c815559cb6ae5ad5015c`（現行ソースとの整合性確認用）
+> **SHA-256:** `63f1ae7fea174b37e84a5c29ab36ba0b3f23462c5bc26682e8d131f347564706`（現行ソースとの整合性確認用）
 
 ## 1. 実装ソース全文（省略なし）
 
@@ -44,7 +44,7 @@ test('filters by category', () => {
   assert.equal(projectMatches(data[0], '', 'Web Application'), false);
 });
 test('search is case-insensitive and checks technology', () => {
-  assert.equal(projectMatches(data[0], 'BANDIT'), true);
+  assert.equal(projectMatches(data[0], 'NUMPY'), true);
   assert.equal(projectMatches(data[0], 'python'), true);
   assert.equal(projectMatches(data[0], 'unmatched'), false);
 });
