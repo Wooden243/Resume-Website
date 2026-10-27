@@ -1,47 +1,51 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Customize a JSON-powered static portfolio template.">
-  <meta name="theme-color" content="#102c34">
-  <title>Customize — Resume Website</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <script type="module" src="assets/js/site-init.js"></script>
-</head>
-<body>
-<a class="skip-link" href="#main">Skip to content</a>
-<div class="template-strip"><strong>Portfolio template</strong> Sample content only — customize before publishing.</div>
-<header class="site-header">
-  <div class="container nav-inner">
-    <a class="brand" href="index.html" aria-label="Portfolio template home"><span class="brand-mark" aria-hidden="true">✳</span> yourfolio<span class="sr-only"></span></a>
-    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
-    <nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="Main navigation">
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="projects/index.html">Projects</a>
-      <a href="resume/index.html">Resume</a>
-      <a class="nav-contact" href="index.html#contact">Get in touch ↗</a>
-    </nav>
-  </div>
-</header>
+<html lang="ja"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="技術ポートフォリオの構成、掲載作品の根拠、追加・更新方法を説明するガイド。">
+<meta name="theme-color" content="#102c34">
+<link rel="canonical" href="https://wooden243.github.io/mysite/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="サイトガイド — Wooden243">
+<meta property="og:description" content="掲載する成果物の検証範囲とサイトの更新方法。">
+<meta property="og:url" content="https://wooden243.github.io/mysite/guide.html">
+<meta name="twitter:card" content="summary">
+<title>サイトガイド — Wooden243</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script type="module" src="assets/js/site-init.js"></script>
+</head><body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="container nav-inner">
+<a class="brand" href="index.html" aria-label="Wooden243 ホーム"><span class="brand-mark" aria-hidden="true">✳</span> Wooden243</a>
+<button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu ☰</button>
+<nav class="site-nav" id="primary-navigation" data-nav-menu aria-label="メインナビゲーション">
+<a href="index.html">Home</a><a href="projects/index.html">Projects</a><a href="resume/index.html">About</a>
+<a class="nav-contact" href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+</nav></div></header>
 <main id="main"><div class="container">
-<header class="page-intro"><div class="eyebrow">Documentation</div><h1>Make it yours<span style="color:#dc684b">.</span></h1><p>The site is a demonstration template. Replace placeholders, verify every claim, and deploy only after reviewing your public data.</p></header>
-<div class="guide-grid"><nav class="guide-aside" aria-label="Guide sections"><h2>On this page</h2><a href="#start">Run locally</a><a href="#profile">Edit your profile</a><a href="#projects">Add projects</a><a href="#pdf">Replace PDF</a><a href="#publish">Publish</a></nav>
+<header class="page-intro"><div class="eyebrow">Documentation</div><h1>Site guide<span style="color:#dc684b">.</span></h1>
+<p>このサイトで紹介する成果物の範囲と、コード・評価結果へのアクセス方法をまとめています。</p></header>
+<div class="guide-grid">
+<nav class="guide-aside" aria-label="ガイドの目次"><h2>目次</h2>
+<a href="#structure">サイトの構成</a><a href="#sources">成果物と根拠</a><a href="#extend">作品の追加方法</a><a href="#run">ローカル実行</a><a href="#scope">公開情報の扱い</a>
+</nav>
 <div class="guide-main">
-<section id="start"><h2>01 / Run locally</h2><p>Since the browser loads JSON with <code>fetch()</code>, open the site through an HTTP server rather than double-clicking the HTML file.</p><pre><code>python3 -m http.server 8000 --bind 127.0.0.1</code></pre><p>Then open <code>http://127.0.0.1:8000/</code> in your browser.</p></section>
-<section id="profile"><h2>02 / Edit profile data</h2><p>Open <code>data/profile.json</code> and replace the name, introduction, skills, experience, and education. Changes appear on the home and resume pages after reloading.</p><p>Delete any sample entries you cannot verify. The example identity and project descriptions are fictional.</p></section>
-<section id="projects"><h2>03 / Add a project</h2><p>Edit <code>data/projects.json</code>. Add a new object with a unique <code>id</code> and <code>slug</code>, title, summary, content, stack, and metadata. The listing and project-detail page are generated automatically.</p><p>Use a slug like <code>my-first-project</code>. Set <code>featured</code> to <code>true</code> to display a project on the homepage. Optional source and demo links must be HTTPS URLs.</p></section>
-<section id="pdf"><h2>04 / Replace the sample PDF</h2><p>Replace <code>assets/sample-resume.pdf</code> with a verified resume, or update the relative PDF path in <code>data/profile.json</code>. The sample PDF deliberately contains placeholders.</p></section>
-<section id="publish"><h2>05 / Publish with HTTPS</h2><p>This folder is deploy-ready but is not itself a hosted website. Follow <code>docs/deployment.md</code> for GitHub Pages, a custom domain, DNS, HTTPS, and deployment checks.</p><p>GitHub Pages can provide HTTPS for its own domain. A custom domain requires a domain you control and DNS configuration.</p><p>Before publishing, search the project for <code>Your Name</code>, <code>example.com</code>, <code>20XX</code>, and <code>demo</code>, and replace every relevant placeholder.</p></section>
+<section id="structure"><h2>01 / サイトの構成</h2>
+<p>静的HTML・CSS・JavaScript（ES modules）で構成しています。<a href="projects/index.html">作品一覧</a>は<code>data/projects.json</code>を読み込み、検索・カテゴリ別の表示と共通の詳細ページを提供します。<a href="resume/index.html">About</a>は<code>data/profile.json</code>の技術情報を表示します。</p></section>
+<section id="sources"><h2>02 / 成果物と根拠</h2>
+<p><a href="projects/detail.html?slug=ml-algorithms">Machine Learning Algorithms</a>では、公開コードで再現できるε-greedy法の数値実験と、講義発表時の分析を区別しています。実験CSV、理論ノート、検証資料へのリンクを詳細ページに掲載しています。</p>
+<p><a href="projects/detail.html?slug=chatbot">ChatBot</a>では、画面・API・DB・外部AI連携の構成を説明しています。ローカルでの検証と実API通信、公開運用の実績は区別しています。</p></section>
+<section id="extend"><h2>03 / 作品を追加する</h2>
+<p><code>data/projects.json</code>に一意の<code>id</code>・<code>slug</code>、タイトル、要約、課題、方法、結果と制約、技術スタック、GitHubソースURLを追加します。詳細な処理手順には<code>workflow</code>、検証対象の指標には<code>highlights</code>、裏付け資料には<code>resources</code>を指定できます。</p>
+<p>正確なデータ構造は<a href="https://github.com/Wooden243/mysite/blob/main/docs/customization.md" target="_blank" rel="noopener noreferrer">編集ガイド</a>を参照してください。完成・検証済みの範囲だけを記載します。</p></section>
+<section id="run"><h2>04 / ローカルで確認する</h2>
+<p>プロジェクトデータは<code>fetch()</code>で取得するため、HTMLを直接開くのではなくHTTPサーバー経由で確認してください。</p>
+<pre><code>python3 -m http.server 8000 --bind 127.0.0.1</code></pre>
+<p><code>http://127.0.0.1:8000/</code>を開き、テストは<code>bash scripts/verify.sh</code>で実行できます。</p></section>
+<section id="scope"><h2>05 / 公開情報の扱い</h2>
+<p>GitHub上で公開済みのコードと検証結果を中心に記載し、氏名・連絡先・未確認の学歴や職歴は掲載していません。数値実験の結果は特定条件の観察であり、一般的な最適性や統計的な有意差を意味するものではありません。</p></section>
 </div></div></div></main>
-<footer class="site-footer">
-  <div class="container footer-row">
-    <p>© <span data-year>2026</span> yourfolio. A customizable project template.</p>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="index.html">Home</a><a href="projects/index.html">Projects</a><a href="resume/index.html">Resume</a><a href="guide.html">Setup guide</a>
-    </nav>
-  </div>
-</footer>
-</body>
-</html>
+<footer class="site-footer"><div class="container footer-row">
+<p>© <span data-year>2026</span> Wooden243 · Technical portfolio</p>
+<nav class="footer-links" aria-label="フッターナビゲーション"><a href="index.html">Home</a><a href="projects/index.html">Projects</a><a href="resume/index.html">About</a><a href="guide.html" aria-current="page">Guide</a><a href="https://github.com/Wooden243" target="_blank" rel="noopener noreferrer">GitHub</a></nav></div></footer>
+</body></html>
